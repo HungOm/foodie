@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  order_datetime: 2022-01-05 23:33:41
+
+two:
+  customer_id: 
+  order_datetime: 2022-01-05 23:33:41

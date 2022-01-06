@@ -1,0 +1,2 @@
+class Goodie < ApplicationRecord
+end
