@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_181705) do
+ActiveRecord::Schema.define(version: 2022_01_08_193254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_01_08_181705) do
     t.text "description"
     t.integer "menu_status", default: 0
     t.integer "shipping_address_id"
+    t.string "image_url"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -38,7 +39,6 @@ ActiveRecord::Schema.define(version: 2022_01_08_181705) do
   create_table "orders", force: :cascade do |t|
     t.datetime "order_datetime"
     t.integer "user_id"
-    t.boolean "completed", default: false
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
