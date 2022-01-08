@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_140918) do
+ActiveRecord::Schema.define(version: 2022_01_08_181705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_140918) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price"
     t.text "description"
-  end
-
-  create_table "goodies", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "menu_status", default: 0
+    t.integer "shipping_address_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -40,10 +36,27 @@ ActiveRecord::Schema.define(version: 2022_01_06_140918) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
     t.datetime "order_datetime"
+    t.integer "user_id"
+    t.boolean "completed", default: false
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "food_id"
+    t.integer "status"
+  end
+
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.string "address_name"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "address_city"
+    t.string "address_state"
+    t.integer "address_zip"
+    t.string "address_country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
   end
 
   create_table "users", force: :cascade do |t|

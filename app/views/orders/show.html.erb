@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Order datetime:</strong>
+
+   <% @order.attributes.each do |attr_name, attr_value| %>
+  <div class="work_profile_attribute">
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+</p>
+
+<p>
+  <strong>Shipping address:</strong>
+ <% @order.shipping_address.attributes.each do |attr_name, attr_value| %>
+  <div class="work_profile_attribute">
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <div class="work_profile_attribute">
+    Name: <%= @order.user.name%>
+    Email: <%= @order.user.email%>
+  </div>
+
+
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back To Home Page', root_path %>

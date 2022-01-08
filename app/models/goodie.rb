@@ -1,2 +1,0 @@
-class Goodie < ApplicationRecord
-end

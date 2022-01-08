@@ -1,34 +1,42 @@
 <div class=" p-2  w-full bg-blue-300 grid justify-items-center">
+    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
     <div>
-        <table class="table-auto">
-            <thead>
-                <tr class="text-align-left">
-                    <th>Food</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
                 <% if !@foods.blank? %>
                 <% for food in @foods %>
-                <tr>
-                    <td>
+                <%if food.published?%>
+                    <div class="custom-rounded bg-blue-100 w-100 m-20 ">
+                        <div class="flex  shadow-lg w-200">
+                            <img class="w-60"
+                                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHZlZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                                alt="vegan">
+                            <div id="card" class="center pl-3  w-100 justify-content-center">
+                                <div class="dish ">
+                                    <h1 class="text-red-500 text-8xl"><%=food.name%> </h1>
+                                </div>
+                                <div class="description mt-10 text-5xl">
+                                    <p>
+                                        <%=food.description%>
+                                    </p>
+                                </div>
+                                <div class="footer flex space-x-80 p-10">
+                                    <div class="amount justify-content-start text-green-400">
+                                        <h3 class="text-5xl">$<%=food.price%></h3>
+                                    </div>
+                                    <div
+                                        class="ustify-content-end  rounded-full w-26 p-4 pl-5 bg-blue-600 hover:bg-blur-500 hover:shadow-lg text-white cursor-pointer text-3xl">
+                                        <%# <button type="button">Order Now</button> %>
 
-                                        <%= link_to food_path(:id=>food.id) do %>
-
-                                        <%=food.name%>
-
-                                         <% end %>
-
-                    </td>
-                    <td>RM <%=
-                    food.price
-                    %>.00</td>
-                </tr>
+                                        <%# <a href="/order/new">Link</a> %>
+                                        <%= link_to 'Order Now', new_food_order_path(:food_id=>food.id)%>                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%end%>
                 <% end %>
                 <% else %>
                 <p>No food available</p>
                 <%end%>
-            </tbody>
-        </table>
+
     </div>
 </div>

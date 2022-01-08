@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_filter :authorize_admin, only: :create
+
 
   # GET /resource/sign_up
   # def new
@@ -10,9 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -59,4 +61,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  # This should probably be abstracted to ApplicationController
+  # as shown by diego.greyrobot
+  def authorize_admin
+    return unless !current_user.admin?
+    redirect_to root_path, alert: 'Admins only!'
+  end
+  
 end
