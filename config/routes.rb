@@ -6,13 +6,14 @@ Rails.application.routes.draw do
 
 root to: 'page#home'
 
-get ':order_id'=> 'order#order_info'
+# get ':order_id'=> 'orders#order_info'
 
 
 
 resources :foods,shallow: true do
   resources :orders do
     resources :shipping_addresses
+    resources :line_items
   end
 end
 

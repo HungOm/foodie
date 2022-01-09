@@ -1,42 +1,86 @@
-<div class=" p-2  w-full bg-blue-300 grid justify-items-center">
-    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
-    <div>
+<div class="p-2 w-full  grid justify-items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+    <div class="grid grid-cols-3 h-full w-full">
+        <div class="md:col-span-2 sm:col-span-3">
+            <div class=" w-5/10">
                 <% if !@foods.blank? %>
                 <% for food in @foods %>
                 <%if food.published?%>
-                    <div class="custom-rounded bg-blue-100 w-100 m-20 ">
-                        <div class="flex  shadow-lg w-200">
-                            <img class="w-60"
-                                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHZlZ2FufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                                alt="vegan">
-                            <div id="card" class="center pl-3  w-100 justify-content-center">
-                                <div class="dish ">
-                                    <h1 class="text-red-500 text-8xl"><%=food.name%> </h1>
+                <div class="bg-blue-100 m-10 rounded-10">
+                    <div class="flex shadow-lg w-100">
+                        <%= image_tag food.image_url,class:"w-4/12",alt:food.image_url.split('/')[-1].split('.')[0]%>
+                        <div id="card" class="center p-3 w-100 justify-content-center">
+                            <div class="dish ">
+                                <h1 class="text-red-500 text-4xl"><%=food.name%> </h1>
+                            </div>
+                            <div class="description break-normal whitespace-pre-line h-4/4 ">
+                                <p class="text-xl">
+                                    <%=food.description%>
+                                </p>
+                            </div>
+                            <div class="footer flex xlg:space-x-100  lg:space-x-85 md:space-x-40 sm:space-x-20 p-10">
+                                <div class="amount justify-content-start text-green-400">
+                                    <h3 class="text-2xl">$<%=food.price%></h3>
                                 </div>
-                                <div class="description mt-10 text-5xl">
-                                    <p>
-                                        <%=food.description%>
-                                    </p>
-                                </div>
-                                <div class="footer flex space-x-80 p-10">
-                                    <div class="amount justify-content-start text-green-400">
-                                        <h3 class="text-5xl">$<%=food.price%></h3>
-                                    </div>
-                                    <div
-                                        class="ustify-content-end  rounded-full w-26 p-4 pl-5 bg-blue-600 hover:bg-blur-500 hover:shadow-lg text-white cursor-pointer text-3xl">
-                                        <%# <button type="button">Order Now</button> %>
-
-                                        <%# <a href="/order/new">Link</a> %>
-                                        <%= link_to 'Order Now', new_food_order_path(:food_id=>food.id)%>                                    </div>
+                                <div class="text-white cursor-pointer text-2xl">
+                                    <%= button_to 'Order Now', new_food_order_path(:food_id=>food.id),method:"get",class:"cursor-pointer text-white bg-gradient-to-r from-blue-500 hover:text-white-800 rounded-full w-26 p-4 pl-5 bg-blue-600 visited:text-white"%>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <%end%>
+                </div>
+                <%end%>
                 <% end %>
                 <% else %>
                 <p>No food available</p>
                 <%end%>
-
+            </div>
+        </div>
+        <!-- ... -->
+        <div class="md:col-span-1 sm:col-span-3">
+            <div class="w-4/12 h-8/10 bg-gradient-to-r from-indigo-500  fixed mr-3 p-3 text-white">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>Song</th>
+                            <th>Artist</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                            <td>Malcolm Lockyer</td>
+                            <td>1961</td>
+                        </tr>
+                        <tr>
+                            <td>Witchy Woman</td>
+                            <td>The Eagles</td>
+                            <td>1972</td>
+                        </tr>
+                        <tr>
+                            <td>Witchy Woman</td>
+                            <td>The Eagles</td>
+                            <td>1972</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr width="100%">
+                <div class="mt-2">
+                    <%if !@orders.blank?%>
+                    <% for order in @orders%>
+                    <ul>
+                        <li td class="table-data-even p-2 bg-gradient-to-r from-blue-500 to-transparent">
+                            <h2>Ordered Food: <%=order.food.name%></h2>
+                        </li>
+                        <li td class="table-data-odd p-2 transparent-2">Ordered At : <%=order.created_at%></li>
+                        <li td class="table-data-even p-2">Delivery Date & Time
+                            :<%=order.order_datetime.strftime("%I:%M%p")%> -
+                            <%=order.order_datetime.strftime("%m/%d/%Y")%></li>
+                    </ul>
+                    <%end%>
+                    <%end%>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

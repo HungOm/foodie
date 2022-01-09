@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+<p>
+  <strong>Order Completed:</strong>
+
+   <% @line_item.attributes.each do |attr_name, attr_value| %>
+  <div class="work_profile_attribute">
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+</p>
+<%# <%= link_to 'Edit', edit_line_item_path(@line_item) %> | %>
+<%# <%= link_to 'Back', line_items_path %> %>
+<%= link_to 'Home', root_path %>

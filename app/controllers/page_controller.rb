@@ -5,7 +5,8 @@ class PageController < ApplicationController
       redirect_to rails_admin_path
     end
     @foods = Food.first(10)
-    @orders = Order.first(10)
+    @orders = User.find(current_user.id).orders
+    
   end
 
 end
