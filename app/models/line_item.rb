@@ -1,14 +1,16 @@
 class LineItem < ApplicationRecord
-    enum status: [:completed, :processing]
+  enum status: [:pending,:approved, :completed, :cancelled]
+
     after_initialize :set_default_type, :if => :new_record?
     belongs_to :food
-    belongs_to :order
+    belongs_to :order,touch: true
 
 
 
     private
     def set_default_type
-      self.status||= :processing
+      self.status||= :pending
     end
+    
   
 end

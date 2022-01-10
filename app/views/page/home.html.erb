@@ -1,85 +1,105 @@
 <div class="p-2 w-full  grid justify-items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
     <div class="grid grid-cols-3 h-full w-full">
         <div class="md:col-span-2 sm:col-span-3">
-            <div class=" w-5/10">
-                <% if !@foods.blank? %>
+            <% if !@foods.blank? %>
+            <%if @foods.count>1%>
                 <% for food in @foods %>
-                <%if food.published?%>
-                <div class="bg-blue-100 m-10 rounded-10">
-                    <div class="flex shadow-lg w-100">
-                        <%= image_tag food.image_url,class:"w-4/12",alt:food.image_url.split('/')[-1].split('.')[0]%>
-                        <div id="card" class="center p-3 w-100 justify-content-center">
-                            <div class="dish ">
-                                <h1 class="text-red-500 text-4xl"><%=food.name%> </h1>
-                            </div>
-                            <div class="description break-normal whitespace-pre-line h-4/4 ">
-                                <p class="text-xl">
-                                    <%=food.description%>
-                                </p>
-                            </div>
-                            <div class="footer flex xlg:space-x-100  lg:space-x-85 md:space-x-40 sm:space-x-20 p-10">
-                                <div class="amount justify-content-start text-green-400">
-                                    <h3 class="text-2xl">$<%=food.price%></h3>
-                                </div>
-                                <div class="text-white cursor-pointer text-2xl">
-                                    <%= button_to 'Order Now', new_food_order_path(:food_id=>food.id),method:"get",class:"cursor-pointer text-white bg-gradient-to-r from-blue-500 hover:text-white-800 rounded-full w-26 p-4 pl-5 bg-blue-600 visited:text-white"%>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <%=render '/layouts/card',food:food %>
                 <%end%>
-                <% end %>
-                <% else %>
+
+
+            <%else%>
+                 <%=render '/layouts/card',food:@foods %>
+
+                <%end%>
+            <% else %>
                 <p>No food available</p>
-                <%end%>
-            </div>
+            <%end%>
         </div>
         <!-- ... -->
         <div class="md:col-span-1 sm:col-span-3">
             <div class="w-4/12 h-8/10 bg-gradient-to-r from-indigo-500  fixed mr-3 p-3 text-white">
-                <table class="table-auto">
+                <%if user_signed_in?%>
+                <h3>Current Order</h3>
+                <div class="mt-2 bg-purple-500 p-2 content-center">
+                    <%if !@orders.blank?%>
+                    <%order = sort_collection(@orders).first%>
+                    <div class="justify-center text-sm">
+                        <h3 class="">
+                            <%=order.food.name%>
+                        </h3>
+                        <li class=" p-2 text-xsm ">Ordered :
+                            <%=time_ago_in_words(order.created_at)%> ago</li>
+                        <li class=" p-2 text-xsm">Status
+                            :<%=order.status%>
+                        </li>
+                    </div>
+                    <%end%>
+                </div>
+                <hr width="100%" class="m-3">
+                <h3>Pending orders</h3>
+                <table class="table-auto text-sm w-100">
                     <thead>
                         <tr>
-                            <th>Song</th>
-                            <th>Artist</th>
-                            <th>Year</th>
+                            <th>
+                                <h4 class="text-sm"> Order</h4>
+                            </th>
+                            <th>Status</th>
+                            <th>Location</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                            <td>Malcolm Lockyer</td>
-                            <td>1961</td>
-                        </tr>
-                        <tr>
-                            <td>Witchy Woman</td>
-                            <td>The Eagles</td>
-                            <td>1972</td>
-                        </tr>
-                        <tr>
-                            <td>Witchy Woman</td>
-                            <td>The Eagles</td>
-                            <td>1972</td>
-                        </tr>
+                        <div class="mt-2 p-4">
+                            <%if !@orders.blank?%>
+                            <%for order in @orders %>
+                            <tr class="">
+                                <td class="mr-2">
+                                    <h2><%=order.food.name%></h2>
+                                </td>
+                                <td class="mr-2"><%=order.status%></td>
+                                <%if !order.shipping_address.blank?%>
+                                <td class="m-6"><%=order.shipping_address.address_name%></td>
+                                <%else%>
+                                <td class="m-6">Address unavailable</td>
+                                <%end%>
+                            </tr>
+                            <%end%>
+                            <%end%>
+                        </div>
                     </tbody>
                 </table>
-                <hr width="100%">
-                <div class="mt-2">
-                    <%if !@orders.blank?%>
-                    <% for order in @orders%>
-                    <ul>
-                        <li td class="table-data-even p-2 bg-gradient-to-r from-blue-500 to-transparent">
-                            <h2>Ordered Food: <%=order.food.name%></h2>
-                        </li>
-                        <li td class="table-data-odd p-2 transparent-2">Ordered At : <%=order.created_at%></li>
-                        <li td class="table-data-even p-2">Delivery Date & Time
-                            :<%=order.order_datetime.strftime("%I:%M%p")%> -
-                            <%=order.order_datetime.strftime("%m/%d/%Y")%></li>
-                    </ul>
-                    <%end%>
-                    <%end%>
+                <%else%>
+                <h3 class="mt-2 text-4xl bg-gradient-to-r from-cyan-800 to-blue-900  rounded-lg p-3">Latest orders</h3>
+                <table class="table-auto text-sm w-100">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h4 class="text-sm">Order</h4>
+                            </th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div class="mt-2 p-4">
+                            <%if !@orders.blank?%>
+                            <%for order in @orders %>
+                            <tr class="">
+                                <td class="mr-2">
+                                    <h2 class="bg-purple-500 p-1 rounded-lg"><%=order.food.name%> was ordered</h2>
+                                </td>
+                                <td class="mr-2"><%=order.status%></td>
+                            </tr>
+                            <%end%>
+                            <%end%>
+                        </div>
+                    </tbody>
+                </table>
+                <div class="flex justify-center">
+                    <div>
+                        <%=button_to "Sign in to make an order", user_session_path,class:"place-self-center p-3 pl-4 pr-4 cursor-pointer bg-blue-600 rounded-xl" %>
+                    </div>
                 </div>
+                <%end%>
             </div>
         </div>
     </div>

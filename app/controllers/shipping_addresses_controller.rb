@@ -1,5 +1,7 @@
 class ShippingAddressesController < ApplicationController
   before_action :set_shipping_address, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+
 
   # GET /shipping_addresses or /shipping_addresses.json
   def index
@@ -14,6 +16,8 @@ class ShippingAddressesController < ApplicationController
   def new
 
     @shipping_address = ShippingAddress.new
+
+    @food = Order.find(params[:order_id]).food
 
   end
 
