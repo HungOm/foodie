@@ -1,9 +1,19 @@
+<%= render 'template' %>
 <%# <%= link_to 'Back', food_orders_path%>
 <div class="flex justify-center content-center ">
     <div class="w-2/6 h-full m-20 bg-blue-300 text-center place-self-center p-2 rounded-lg">
         <h2 class="text-3xl text-white">Delivery Address</h2>
         <div class="text-left p-10">
-            <%= render 'form',shipping_address: @shipping_address,url:order_shipping_addresses_path %>
+        <%if @shipping_address.save%>
+                    <%= render 'edit_form',shipping_address: @shipping_address,url:shipping_addresses_path%>
+
+
+
+        <%else%>
+                    <%= render 'form',shipping_address: @shipping_address,url:shipping_addresses_path%>
+
+
+        <%end%>
             <%# <%= button_to 'Back', food_orders_path(:food_id=>@food.id),class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm",method: :get %>
         </div>
     </div>

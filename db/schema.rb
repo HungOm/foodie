@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_08_193254) do
+ActiveRecord::Schema.define(version: 2022_01_13_121323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,27 +23,27 @@ ActiveRecord::Schema.define(version: 2022_01_08_193254) do
     t.integer "price"
     t.text "description"
     t.integer "menu_status", default: 0
-    t.integer "shipping_address_id"
     t.string "image_url"
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "food_id"
-    t.integer "amount"
+    t.integer "user_id"
+    t.decimal "total_price", precision: 10, scale: 3
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status"
+    t.integer "shipping_address_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "order_datetime"
     t.integer "user_id"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "food_id"
     t.integer "status"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
+    t.integer "line_item_id"
+    t.integer "food_id"
   end
 
   create_table "shipping_addresses", force: :cascade do |t|
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2022_01_08_193254) do
     t.string "address_country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id"
   end
 
   create_table "users", force: :cascade do |t|

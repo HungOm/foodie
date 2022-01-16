@@ -49,6 +49,13 @@ Food.create(name:Faker::Food.dish,price:rand(11.2...76.9),ingredients:Faker::Foo
     puts "-----------------Food created -------------------"
     
 end
+
+puts ""
+puts "================= reindexing ==========================\n"
+Food.reindex
+puts ""
 puts " "
 puts "================== db planting completed ==============\n"
 puts " "
+
+

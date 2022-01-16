@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  skip_before_action :authenticate_user!,raise: false
 
 
   # GET /orders or /orders.json
@@ -26,6 +27,28 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
   end
+
+
+  def test
+    byebug
+
+    params
+      # lineItem = LineItem.new(user_id:current_user.id,)
+    if !session[:current_delivery_id].blank?
+      respond_to do |format|
+        format.json { render :show, status: :created, location: @order }
+        
+      end
+    else
+      respond_to do |format|
+        format.js
+        format.html{ redirect_to @node }
+      end
+   
+    end
+
+  end
+
 
 
 
@@ -78,6 +101,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:order_datetime,:quantity, :user_id,:food_id,:order_id)
+      params.require(:order).permit(:quantity, :user_id,:food_id,:order_id)
     end
 end

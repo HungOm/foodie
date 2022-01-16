@@ -14,7 +14,6 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "New Order"
 
-    fill_in "Order datetime", with: @order.order_datetime
     fill_in "Shipping address", with: @order.shipping_address_id
     fill_in "User", with: @order.user_id
     click_on "Create Order"
@@ -27,7 +26,6 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "Edit", match: :first
 
-    fill_in "Order datetime", with: @order.order_datetime
     fill_in "Shipping address", with: @order.shipping_address_id
     fill_in "User", with: @order.user_id
     click_on "Update Order"

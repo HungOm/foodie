@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
     "autoprefixer": "9",
+    "debounce": "^1.2.1",
+    "lodash": "^4.17.21",
     "postcss": "7",
     "rails_admin": "3.0.0-beta",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",

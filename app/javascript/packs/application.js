@@ -17,6 +17,6 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 import "stylesheets/application";
 global.toastr = require("toastr");
-
+// require('../packs/pages/home')
 
 

@@ -1,5 +1,5 @@
 
-<%= form_with(model:shipping_address, url:url,local: true) do |form| %>
+<%= form_with(model:shipping_address, url:url,remote: true,id:'shipping_address') do |form| %>
   <% if shipping_address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shipping_address.errors.count, "error") %> prohibited this shipping_address from being saved:</h2>
@@ -43,9 +43,6 @@
     <%= form.text_field :address_zip,class:"mt-1 px-3 py-2 bg-white border shadow-sm  placeholder-gray-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-2" %>
   </div>
 
-      <div class="field">
-    <%= form.hidden_field :order_id, value:params[:order_id]%>
-  </div>
 
  
 

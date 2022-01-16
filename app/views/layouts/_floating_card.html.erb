@@ -1,0 +1,27 @@
+     <div
+         class="w-full bg-transparent text-white lg:p-4 sm:p-7 sm:pr-6 lg:fixed md:relative sm:relative border-white-200 rounded-sm">
+         
+
+                      <div class="disappear lg:w-4/12 sm:w-12/12 bg-white p-3 sm:p-6 lg:p-10 h-full text-black  sm:ml-5 ">
+             <div class="cart-title w-12/12 ">
+                 <div>
+                     <h2 class="text-2xl text-red-600">Shopping Cart</h2>
+                     <p class="sub-title">Please review the items in your cart (<span class="cart-count"></span>)</p>
+                 </div>
+                 <div class="total">
+                     <span class="total-txt">Total Amount</span>
+                     <span class="total-amount">Total :  &nbsp;<span></span></span>
+                 </div>
+             </div>
+             <ul clas="w-12"></ul>
+             <div class="checkout">
+             <span id="btn">
+
+                 <%# <button>Proceed to Checkout</button> %>
+                 <%=button_to 'Check out', new_shipping_address_path, class:"p-2 w-30 bg-indigo-500  rounded-lg checkout-btn cursor-pointer text-white",id:"checkout-btn", method: :get%>
+                </span>
+             </div>
+         </div>
+
+
+     </div>

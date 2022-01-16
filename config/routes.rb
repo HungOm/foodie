@@ -10,12 +10,18 @@ root to: 'page#home'
 
 
 
-resources :foods,shallow: true do
-  resources :orders do
-    resources :shipping_addresses
-    resources :line_items
+resources :foods
+
+resources :shipping_addresses,shallow: true do
+  resources :line_items do
+    resources :orders
   end
 end
+
+post '/add_to_cart' => 'carts#add_to_cart', :as => 'add_to_cart' 
+post '/test' => 'orders#test', :as => 'order_test' 
+
+get '/search', to: 'foods#search'
 
   
   devise_for :users
@@ -27,10 +33,10 @@ end
 
   end
 
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
+  # match "/404", to: "errors#not_found", via: :all
+  # match "/500", to: "errors#internal_server_error", via: :all
 
-  # get '*path' => redirect { |p, req| req.flash[:notice] = "#{if p[:path].split('/')[0] =='admin'
+  # # get '*path' => redirect { |p, req| req.flash[:notice] = "#{if p[:path].split('/')[0] =='admin'
   #   "Redirected: You need to be an admin to acces #{p[:path]} page"
 
   # else

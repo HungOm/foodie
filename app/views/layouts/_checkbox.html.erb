@@ -1,0 +1,104 @@
+
+<%if user_signed_in?%>
+         <h3>Current Order</h3>
+         <div class="mt-2 bg-purple-500 p-2 content-center">
+             <%if !@line_item.blank?%>
+             <div class="justify-center text-sm">
+                 <%@line_item[0].orders.each do |order|%>
+                 <h3 class="">
+                     <%=order.food.name%>
+                 </h3>
+
+                 <%end%>
+                 <li class=" p-2 text-xsm ">Ordered :
+                     <%=time_ago_in_words(@line_item.created_at)%> ago</li>
+                 <li class=" p-2 text-xsm">Status
+                     :<%=@line_item.status%>
+                 </li>
+             </div>
+             <%end%>
+         </div>
+         <hr width="100%" class="m-3">
+         <h3>Pending orders</h3>
+         <table class="text-sm w-100 p-4 mr-4">
+             <thead>
+                 <tr>
+                     <th>
+                         <h4 class="text-sm"> Order</h4>
+                     </th>
+                     <th>Status</th>
+                     <th>Location</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <div class="mt-2 p-4">
+                     <%if !@line_items.blank?%>
+
+                     <%for line_item in @line_items %>
+                     <tr class="">
+                         <%line_item.orders do|order|%>
+
+                         <td class="mr-2">
+                             <h2><%=order.food.name%></h2>
+                         </td>
+                         <%end%>
+
+                         <td class="mr-2"><%=line_item.status%></td>
+                     </tr>
+                     <%end%>
+                     <%end%>
+                 </div>
+             </tbody>
+         </table>
+
+
+
+
+
+
+
+         <div id="home_cart" class="w-full bg-gradient-to-r from-indigo-500 text-white p-4"></div>
+         <%else%>
+
+
+         <h3 class="mt-2 text-4xl bg-gradient-to-r from-cyan-800 to-blue-900  rounded-lg p-3">Latest orders</h3>
+
+
+         <table class=" text-sm w-100 p-4 mr-4">
+             <thead>
+                 <tr class="m-1">
+                     <th>
+                         Order
+                     </th>
+                     <th>Status</th>
+                 </tr>
+             </thead>
+             <tbody>
+
+
+                 <div class="mt-2 p-4">
+                     <%if !@line_items.blank?%>
+
+                     <%for line_item in @line_items %>
+                     <tr class="">
+
+                         <%line_item.orders.each do |order|%>
+                         <td class="">
+                             <h2><%=order.food.name%></h2>
+                         </td>
+                         <%end%>
+
+                         <td class="mr-2"><%=line_item.status%></td>
+                     </tr>
+                     <%end%>
+                     <%end%>
+                 </div>
+             </tbody>
+         </table>
+         <div class="relative mt-10">
+             <div>
+                 <%=button_to "Sign in to make an order", user_session_path,class:"place-self-center p-3 pl-4 pr-4 cursor-pointer bg-blue-600 rounded-xl" %>
+             </div>
+         </div>
+         <%end%>
+

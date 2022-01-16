@@ -15,9 +15,8 @@ class ShippingAddressesController < ApplicationController
   # GET /shipping_addresses/new
   def new
 
-    @shipping_address = ShippingAddress.new
+    @shipping_address = ShippingAddress.last||ShippingAddress.new
 
-    @food = Order.find(params[:order_id]).food
 
   end
 
@@ -29,13 +28,15 @@ class ShippingAddressesController < ApplicationController
 
   # POST /shipping_addresses or /shipping_addresses.json
   def create
+
     @shipping_address =ShippingAddress.new(shipping_address_params)
     respond_to do |format|
       if @shipping_address.save
-            
 
-        format.html { redirect_to order_url(@shipping_address.order),notice: "Shipping address was successfully created. Your order is completed" }
-        format.json { render :show, status: :created, location: @shipping_address }
+        redirect_to  new_shipping_address_line_item_url(shipping_address_id: @shipping_address.id),notice: "Delivery address was successfully added."
+        return
+        # format.html { redirect_to order_url(@shipping_address),notice: "Shipping address was successfully created. Your order is completed" }
+        # format.json { render :show, status: :created, location: @shipping_address }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @shipping_address.errors, status: :unprocessable_entity }
@@ -47,8 +48,10 @@ class ShippingAddressesController < ApplicationController
   def update
     respond_to do |format|
       if @shipping_address.update(shipping_address_params)
-        format.html { redirect_to shipping_address_url(@shipping_address), notice: "Shipping address was successfully updated." }
-        format.json { render :show, status: :ok, location: @shipping_address }
+        redirect_to  new_shipping_address_line_item_url(shipping_address_id: @shipping_address.id),notice: "Delivery address was successfully updated."
+        return;
+        # format.html { redirect_to shipping_address_url(@shipping_address), notice: "Shipping address was successfully updated." }
+        # format.json { render :show, status: :ok, location: @shipping_address }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @shipping_address.errors, status: :unprocessable_entity }
@@ -74,7 +77,7 @@ class ShippingAddressesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shipping_address_params
-      params.fetch(:shipping_address,{}).permit(:address_name,:address_line1,:address_line2,:address_city,:address_state,:address_zip,:order_id)
+      params.fetch(:shipping_address,{}).permit(:address_name,:address_line1,:address_line2,:address_city,:address_state,:address_zip)
 
     end
 

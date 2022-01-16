@@ -16,7 +16,7 @@
         <strong>Order Status</strong>
         <% if !@line_item.food.blank? %>
         <div>
-          <h3><%=format_date(@line_item.order.order_datetime)%></h3>
+          <h3><%=format_date(@line_item.order.created_at)%></h3>
           <h3>Ordered Food Status: <%=@line_item.status%></h3>
           <h3>Delivery Location: <%=@line_item.order.shipping_address.address_name%></h3>
          <h3 class="">Order ID #<%=@line_item.order.id%></h3>

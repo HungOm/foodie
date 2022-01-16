@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  order_datetime: 2022-01-07 18:11:46
   shipping_address_id: 1
   user_id: 1
 
 two:
-  order_datetime: 2022-01-07 18:11:46
   shipping_address_id: 1
   user_id: 1

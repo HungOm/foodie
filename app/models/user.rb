@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders, :dependent => :destroy,:foreign_key =>:user_id
+  has_many :line_items
   after_initialize :set_default_type, :if => :new_record?
 
 

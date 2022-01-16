@@ -11,6 +11,10 @@ module Foodie
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.exceptions_app = self.routes # Add this line
+    config.active_job.queue_adapter = :sidekiq
+    config.middleware.use ActionDispatch::Cookies    
+    config.middleware.use ActionDispatch::Session::CookieStore
+
 
 
     # Settings in config/environments/* take precedence over those specified here.

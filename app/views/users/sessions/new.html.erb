@@ -1,57 +1,29 @@
-
 <div class="flex justify-center content-center h-screen bg-blue-300 ">
-
-
-<div class="w-2/6 drop-shadow-xl h-100 m-17 mb-22 text-center bg-white place-self-center">
-<h2 class="text-3xl text-white">Log In</h2>
-
-<div class="text-left p-8">
-
-
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mt-1 px-3 py-2 bg-white border shadow-sm  placeholder-gray-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-2" %>
-  </div>
-
-  <div class="field ">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password",class:"mt-1 px-3 py-2 bg-white border shadow-sm  placeholder-gray-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-2" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in",class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm " %>
-  </div>
-<% end %>
-
-
-   <div class="justify-center">
-        
-
+  <div class="w-2/6 drop-shadow-xl h-100 m-17 mb-22 text-center bg-white place-self-center">
+    <h2 class="text-3xl text-white">Log In</h2>
+    <div class="text-left p-8">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"mt-1 px-3 py-2 bg-white border shadow-sm  placeholder-gray-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-2" %>
+      </div>
+      <div class="field ">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password",class:"mt-1 px-3 py-2 bg-white border shadow-sm  placeholder-gray-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-2" %>
+      </div>
+      <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+      <% end %>
+      <div class="actions">
+        <%= f.submit "Log in",class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm " %>
+      </div>
+      <% end %>
+      <div class="justify-center">
         <%= render "users/shared/links" %>
-
+      </div>
     </div>
-
-
-
+  </div>
 </div>
-
-
-
-
-</div>
-
-
-
-</div>
-
-

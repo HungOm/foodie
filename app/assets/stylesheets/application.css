@@ -19,3 +19,33 @@
     background: rgb(82,49,156);
     background: linear-gradient(90deg, rgba(82,49,156,0.9682247899159664) 17%, rgba(129,104,249,0.9458158263305322) 90%);
  } */
+
+
+
+ /* #wrapper { 
+   display: flex;
+   } 
+li{ 
+   width: 100px; 
+   height: 30px; 
+   list-style: none; 
+   background-color: rgb(1, 4, 49); 
+   border-radius: 10px; 
+   margin: 5px; 
+   padding: 5px; 
+   color: white; 
+   display: flex; 
+   justify-content: center; 
+   align-items: center; 
+} 
+#badge {
+    width: 20px; 
+    height: 20px; 
+    background-color: #f0ad4e; 
+    color: white; 
+    padding: 2px 2px; 
+    border-radius: 5px; 
+    margin-left: 10px; 
+    text-align: center; 
+    float: right; 
+    } 

@@ -12,22 +12,39 @@ class LineItemsController < ApplicationController
   def show
   end
 
+
   # GET /line_items/new
   def new
-    order = Order.find(params[:order_id])
+    if !session[:current_cart].blank?
+      orders = session[:current_cart]
+      shpping = ShippingAddress.find(params[:shipping_address_id])
+      lineItem = shpping.line_items.new(user_id:current_user.id)
 
-    @line_item =order.line_items.create(amount:order.quantity,food_id:order.food.id)
-
-
-    respond_to do |format|
-        if @line_item.save
-          format.html { redirect_to line_item_url(@line_item), notice: "Order Completedd." }
-          format.json { render :show, status: :created, location: @line_item }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        orders.each do |order|
+          lineItem.add_to_cart(order)
         end
+      if lineItem.save
+
+        redirect_to root_path, notice: "Order completed" 
+        return;
       end
+    end
+
+    redirect_to root_path, notice: "No order found" 
+
+    # orders = session[:current_cart]
+    # @line_item =order.line_items.create(amount:order.quantity,food_id:order.food.id)
+
+
+    # respond_to do |format|
+    #     if @line_item.save
+    #       format.html { redirect_to line_item_url(@line_item), notice: "Order Completedd." }
+    #       format.json { render :show, status: :created, location: @line_item }
+    #     else
+    #       format.html { render :new, status: :unprocessable_entity }
+    #       format.json { render json: @line_item.errors, status: :unprocessable_entity }
+    #     end
+    #   end
 
     # redirect_to order_line_items_path(@line_items)
   end

@@ -1,16 +1,14 @@
 class Order < ApplicationRecord
     enum status: [:pending,:approved,:completed, :cancelled]
-    validate :greater_than_zero
+    before_commit :greater_than_zero
 
     after_initialize :set_default_type, :if => :new_record?
-    validates :order_datetime,:quantity,:user_id, presence: true
+    validates :quantity,:user_id, presence: true
+    # validates :food_id,presence: true
     belongs_to :user
     belongs_to :food
-    has_many :line_items ,autosave: true
-    has_one :shipping_address
-
-
-
+    belongs_to :line_item, touch: true
+    # has_many :foods
 
 
 
@@ -26,10 +24,18 @@ class Order < ApplicationRecord
       end
     end
 
+    before_save :set_price
+    def set_price
+      self.price = food.price * quantity
+    end
+
 
     def default_quantity
       self.quantity ||= 1
     end
+
+
+    
 
 
 

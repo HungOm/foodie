@@ -1,0 +1,70 @@
+
+<div class="flex justify-center content-center h-screen bg-blue-300 ">
+
+
+<div class="w-2/6 drop-shadow-xl h-100 m-17 mb-22 text-center bg-white place-self-center">
+<h2 class="text-3xl text-white">Log In</h2>
+
+<div class="text-left p-8">
+
+
+
+
+<%= form_with(model:food, url:url,local: true) do |form| %>
+  <% if shipping_address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shipping_address.errors.count, "error") %> prohibited this shipping_address from being saved:</h2>
+
+      <ul>
+        <% shipping_address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= form.submit class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm" %>
+  </div>
+<% end %>
+
+
+
+<table id="cart-detail" data-hook>
+  <thead>
+    <tr data-hook="cart_items_headers">
+      <th class="cart-item-description-header" colspan="2">jj</th>
+      <th class="cart-item-price-header"><%= ss %></th>
+      <th class="cart-item-quantity-header">jss</th>
+      <th class="cart-item-total-header">asa</th>
+      <th class="cart-item-delete-header"></th>
+    </tr>
+  </thead>
+
+  <%# <%= render "spree/orders/adjustments" unless @order.adjustments.eligible.blank? %> %>
+</table>
+
+
+
+
+   <div class="justify-center">
+        
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
