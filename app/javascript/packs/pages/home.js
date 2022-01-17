@@ -4,7 +4,8 @@ import {
     toggleModal,
     show_cart_button,hide_to_cart_button,
     onReady,
-    DomCleanUp } from './util';
+    DomCleanUp ,
+    user_logged_in} from './util';
 
 
 // import * as _  from 'lodash';
@@ -103,6 +104,9 @@ onReady(function () {
         e.preventDefault();
         updateValue(e.target.value)
     });
+    if (!user_logged_in()) {
+        localStorage.removeItem('cart')
+    }
 
     createCart()
 
@@ -115,22 +119,19 @@ onReady(function () {
         el.addEventListener('click', function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
+
             if (e.target !== e.currentTarget) return;
+            if (!user_logged_in()) {
+                toggleModal();
+                // localStorage.removeItem('cart')
+                return;
+            }
             let element = e.target
             let food_id = get_food_id(element.children[0])
 
             extractFoodInfoAndUpdate(food_id);
             // creating shopping cart 
             createCart();
-
-            // debugger
-
-            // [...element.children].slice(0,3).forEach((el)=>{
-            //     // toggleButton(el);
-            //     add_to_cart_button(el)
-
-
-            // })
             const [hideBtn,showBtn] = [...element.children].slice(0,3)
             hide_to_cart_button(hideBtn)
             show_cart_button(showBtn)

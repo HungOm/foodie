@@ -1,5 +1,5 @@
 
-<%= form_with(model:shipping_address, url:shipping_address_path(:id=>shipping_address.id),remote: true,id:'shipping_address',method: :PATCH) do |form| %>
+<%= form_with(model:shipping_address, url:existing_address_path(:id=>shipping_address.id),remote: true,id:'shipping_address',method: :PATCH) do |form| %>
    <% if shipping_address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shipping_address.errors.count, "error") %> prohibited this shipping_address from being saved:</h2>
@@ -47,8 +47,13 @@
  
 
   <div class="actions">
-    <%= form.submit class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm" %>
+    <%= form.submit "Use Current Address", class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm" %>
   </div>
 <% end %>
+
+<div class="action">
+    <%= button_to "New Address", new_shipping_address_path, class:"px-3 py-2 mt-1 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm",method: :get %>
+
+</div>
 
 

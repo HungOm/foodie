@@ -1,43 +1,52 @@
-<div class=" w-5/10">
+<div class="flex justify-center rounded-xl  w-full">
     <%if food.published?%>
-    <div class="bg-blue-100 m-10 rounded-10" id="<%=food.id%>">
-        <div class="flex shadow-lg w-100">
-            <%= image_tag food.image_url,class:"w-4/12",alt:food.image_url.split('/')[-1].split('.')[0]%>
-            <div id="card" class="center p-3 w-100 justify-content-center">
+    <div class="m-10 mr-12" id="<%=food.id%>">
+        <div class="flex flex-row drop-shadow-lg w-100 bg-white rounded-xl drop-shadow-2xl shadow-lg shadow-indigo-500/40">
+            <div class="lg:w-5/12 sm:w-4/12 ">
+                <%= image_tag food.image_url,class:"w-11/12 h-full ",alt:food.image_url.split('/')[-1].split('.')[0]%>
+            </div>
+            <%= link_to food_path(:id=>food.id) do%>
+            <div id="card" class="center p-2 w-7/12  justify-content-center ">
                 <div class="dish ">
-                    <h1 id="food-name-<%=food.id%>" class="text-red-500 text-4xl "><%=food.name%> </h1>
+                    <h1 id="food-name-<%=food.id%>" class="text-pink-500 text-xl "><%=food.name%> </h1>
                 </div>
-                <div class="description break-normal whitespace-pre-line h-4/4 ">
-                    <p class="text-xl">
-                        <%=food.description%>
+                <div class="description p-2 lg:h-36 sm:h-25 ">
+                    <p class="text-2xsm">
+                        <%=food.description.split(" ").first(10).join(" ")%>...
                     </p>
                 </div>
-                <div class="footer flex xlg:space-x-100  lg:space-x-85 md:space-x-30 sm:space-x-20 pl-10 pr-10 pt-4 pb-4">
+                <div
+                    class="footer flex  space-x-30 xlg:space-x-20 lg:space-x-5 md:space-x-40 sm:space-x-100 xsm:space-x-60 pl-10 pr-10">
                     <div class="amount justify-content-start text-green-400">
-                        <h3 class="text-2xl">$<span id="food-price-<%=food.id%>" ><%=food.price%></span></h3>
+                        <h3 class="text-xl">$<span id="food-price-<%=food.id%>"><%=food.price%></span></h3>
                     </div>
-                    <div  id="cart-button-<%=food.id%>"  class="p-4 pt-2 pb-2 cart-button text-white cursor-pointer text-2xl  w-70 add_cart bg-indigo-500  rounded-full">
-                        <div id="add-button-<%=food.id%>" class="add btn-1 flex flex-row  ">
+                    <div id="cart-button-<%=food.id%>"
+                        class="p-2 -pb-2 cart-button text-white cursor-pointer text-xl  w-50 add_cart bg-pink-500 drop-shadow-2xl  rounded-sm">
+                        <div id="add-button-<%=food.id%>" class="add btn-1 flex flex-row text-sm ">
                             <input type="checkbox" data-remote="false" data-url="/test"
-                                data-params="food_id=<%=food.id%>" class="pl-2 ml-2" data-method="post"
-                                style="display: none"> ADD
-                            <%=image_tag 'icons/plus-icon.png',class:"w-8 h-8 ml-2 rounded-full" %>
+                                data-params="food_id=<%=food.id%>" class="pl-2  text-xs" data-method="post"
+                                style="display: none"> <i class="fas fa-plus text-white"></i>
                         </div>
-                        <div id="added-button-<%=food.id%>" class="added btn-2 hidden flex flex-row  increment rounded-full w-25" >
-                    <span onclick="incrementValue(<%=food.id%>)" class="order-2">
-                        <%=image_tag 'icons/plus-icon.png',class:"w-8 h-8 ml-2  " %>
-                    </span>
-                    <span onclick="decrementValue(<%=food.id%>)" class="order-2">
-                        <%=image_tag 'icons/red-minus.png',class:"w-8 h-8 ml-2  " %>
-                    </span>
-                    <input id="number-input-<%=food.id%>" data-remote="false" data-url="/add_to_cart/<%=food.id%>"
-                        data-params="food_id=<%=food.id%>" type="number" step="1" value="1" class="text-blue-600 w-8 rounded-md order-1"
-                        data-method="post" />
-                </div>
+                        <div id="added-button-<%=food.id%>"
+                            class="added btn-2 hidden flex flex-row increment rounded-sm w-15 text-sm">
+                            <span onclick="incrementValue(<%=food.id%>)" class="order-3">
+                                <i class="fas fa-plus text-white ml-1 "></i>
+                            </span>
+
+                            <input id="number-input-<%=food.id%>" data-remote="false"
+                                data-url="/add_to_cart/<%=food.id%>" data-params="food_id=<%=food.id%>" type="number"
+                                step="1" value="1" class="text-blue-600 w-8 rounded-md ml-1 order-2 text-xsm"
+                                data-method="post" />
+                            <span onclick="decrementValue(<%=food.id%>)" class="order-1">
+                                <i class="fas fa-minus-circle mr-2  text-white "></i>
+                            </span>
+                        </div>
                     </div>
                     <%# <%= button_to 'Order Now', new_food_order_path(:food_id=>food.id),method:"get",class:"cursor-pointer text-white bg-gradient-to-r from-blue-500 hover:text-white-800 rounded-full w-26 p-4 pl-5 bg-blue-600 visited:text-white"%>
                 </div>
             </div>
+
+            <%end%>
         </div>
     </div>
     <%end%>

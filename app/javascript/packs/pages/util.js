@@ -83,10 +83,7 @@ export const toggleModal = () => {
     document.getElementById('modal').classList.toggle('hidden')
 }
 export const hide_to_cart_button = (x) => {
-    if (!user_logged_in()) {
-        toggleModal();
-        return;
-    }
+
         x.classList.remove('add')
         x.classList.add("added", "hidden")
    
@@ -144,6 +141,8 @@ export const DomCleanUp = () => {
 export const cleanOnClick = ()=>{
     DomCleanUp()
 }
+
+const menuBars = document.querySelector('#menu-bars')
 
 window.incrementValue = incrementValue
 window.decrementValue = decrementValue

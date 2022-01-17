@@ -15,7 +15,7 @@
 
 }
 a:hover{
-    background-color: tra;
+    // background-color: transparent;
 }
 
 #results {
@@ -99,12 +99,11 @@ border-color: none;
 .disappear h1 {
 //   margin-bottom: 5px;
 //   font-weight: 400;
-  color: #a03030;
+  // color: #a03030;
   font-size: 28px;
 }
 .disappear ul {
-  display: flex;
-  flex-direction: column;
+
   list-style: none;
 //   margin-top: 10px;
 }

@@ -1,0 +1,97 @@
+<div class="sm:flex sm:flex-col justify-center self-center w-100 m-2 rounded-10 ">
+    <%# <div class="shadow-lg w-100"> %>
+
+    <div class="w-12/12 bg-gray-100 px-10 py-10 sm:h-full sm:w-full">
+        <div class="flex justify-between text-gray-700 border-b pb-8 sm:pb-2">
+            <h1 class="font-semibold text-2xl">Order Histry</h1>
+            <h2 class="font-semibold text-2xl">Total orders: <%=@history.count%> </h2>
+        </div>
+
+
+        <%if !@history.blank?%>
+
+        <div class="flex mt-10 mb-5">
+
+
+            <h3 class="font-semibold text-gray-600 text-xs uppercase text-sm w-2/5">Order Details</h3>
+            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
+            <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
+        </div>
+        <%@history.each do |h|%>
+
+        <div>
+            <h3 class="font-semibold text-gray-600 text-xs capitalize w-2/5">Date : <%=format_date(h.created_at)%></h3>
+            <h3 class="font-semibold text-gray-600 text-xs capitalize w-2/5">Delivery Address :
+                <%=h.shipping_address.blank? ? '' : h.get_address%></h3>
+            <hr class="w-80 m-2">
+
+        </div>
+
+
+
+        <%# <%!h.orders.blank?%>
+        <%h.orders.each do |order|%>
+
+
+
+        <div class="flex items-center hover:bg-gray-300 -mx-8 px-6 py-5">
+            <div class="flex w-2/5">
+                <div class="flex flex-col justify-between ml-4 flex-grow">
+                    <span class="text-purple-500 text-sm"><%=order.food.name%></span>
+                </div>
+            </div>
+            <div class="flex justify-center w-1/5">
+
+
+                <span class="text-red-500 text-xs"><%=order.quantity.blank? ? 'Not availabe' : order.quantity%> </span>
+
+
+
+
+            </div>
+            <span class="text-center w-1/5 font-semibold text-sm">$<%=order.food.price%></span>
+            <span class="text-center w-1/5 font-semibold text-sm">$<%=order.price%></span>
+        </div>
+        <%end%>
+
+        <div class="flex flex-row hover:bg-gray-100">
+            <h3 class="font-semibold text-gray-600 text-xs capitalize w-2/5"></h3>
+            <h3 class="font-semibold text-gray-600 text-xs capitalize w-2/5"></h3>
+            <hr class="w-80 m-2">
+
+        </div>
+
+
+    
+
+           <div class="flex justify-between text-gray-500 border-b pb-8 sm:pb-2">
+            <h3 class="font-semibold text-2xl"></h1>
+            <h2 class="font-semibold text-xl mr-20">Total : $ <%=h.total_price%> </h2>
+        </div>
+
+
+         
+
+
+        <%end%>
+
+        <a href="/" class="flex font-semibold text-indigo-600 text-sm mt-10 hover:bg-gray-100 ">
+
+            <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
+                <path
+                    d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                </svg>
+            Make a new order
+        </a>
+    </div>
+
+    <%end%>
+
+
+
+
+
+
+    <%# </div> %>
+</div>

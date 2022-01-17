@@ -4,7 +4,7 @@
     <div class="w-2/6 h-full m-20 bg-blue-300 text-center place-self-center p-2 rounded-lg">
         <h2 class="text-3xl text-white">Delivery Address</h2>
         <div class="text-left p-10">
-        <%if @shipping_address.save%>
+        <%if @shipping_address.id?%>
                     <%= render 'edit_form',shipping_address: @shipping_address,url:shipping_addresses_path%>
 
 

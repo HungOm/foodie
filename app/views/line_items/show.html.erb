@@ -1,7 +1,7 @@
 <div class="grid  flex flex-row grid-cols-3 h-full w-full">
   <div class="md:col-span-2 sm:col-span-3">
     <div>
-      <% if !@line_item.food.blank? %>
+      <% if !@line_item.blank? %>
       <div>
         <%=render 'line_item',line_item:@line_item%>
         <% else %>
@@ -12,22 +12,8 @@
 
   </div>
 
-        <div class="h-8/10 bg-gradient-to-r h-60 from-indigo-500  mr-3 mt-20 p-3 text-white">
-        <strong>Order Status</strong>
-        <% if !@line_item.food.blank? %>
-        <div>
-          <h3><%=format_date(@line_item.order.created_at)%></h3>
-          <h3>Ordered Food Status: <%=@line_item.status%></h3>
-          <h3>Delivery Location: <%=@line_item.order.shipping_address.address_name%></h3>
-         <h3 class="">Order ID #<%=@line_item.order.id%></h3>
 
-        </div>
-        <% else %>
-        <p>No food available</p>
-        <%end%>
-      </div>
     </div>
-</div>
 <%# <%= link_to 'Edit', edit_line_item_path(@line_item) %>
 <%# <%= link_to 'Back', line_items_path %>
 <%= link_to 'Home', root_path %>

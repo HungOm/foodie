@@ -6,11 +6,14 @@ onReady(function(){
 
 
     const shipping_addresses = document.querySelector('#shipping_address');
-    debugger
 
     shipping_addresses.addEventListener('ajax:success',function(){
         localStorage.removeItem("cart");
     })
+
+    // shipping_addresses.addEventListener('ajax:complete',function(){
+    //     console.log("Failed")
+    // })
 
 
 

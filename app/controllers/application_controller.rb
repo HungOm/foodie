@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
     rescue_from Exception, :with => :render_404
 
-
-
     private
 
   def render_404

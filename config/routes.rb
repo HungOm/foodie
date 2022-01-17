@@ -20,6 +20,10 @@ end
 
 post '/add_to_cart' => 'carts#add_to_cart', :as => 'add_to_cart' 
 post '/test' => 'orders#test', :as => 'order_test' 
+patch '/existing_address/:id' => 'shipping_addresses#reuse_address', :as => 'existing_address' 
+get '/order_history' => 'line_items#history', :as => 'order_history' 
+get '/add_new_address' => 'shipping_addresses#add_new', :as => 'add_new_address' 
+post '/create_new_address' => 'shipping_addresses#create_new_address', :as => 'create_new_address' 
 
 get '/search', to: 'foods#search'
 

@@ -5,7 +5,7 @@ class LineItem < ApplicationRecord
     # belongs_to :food
 
     has_many :orders,autosave: true
-    # belongs_to :shipping_address
+    belongs_to :shipping_address
     belongs_to :user
 
 
@@ -18,6 +18,12 @@ class LineItem < ApplicationRecord
       else
         return order.errors
       end
+    end
+
+    def get_address
+      full_address = "#{shipping_address.address_name},#{shipping_address.address_line1},
+      #{shipping_address.address_city},#{shipping_address.address_state},#{shipping_address.address_zip}"
+      return full_address
     end
 
 

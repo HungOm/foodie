@@ -7,7 +7,11 @@
           md:py-4
           px-4
           text-lg
-          bg-indigo-500          
+          bg-indigo-500 
+
+          bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+
+
           nav
           ">
   <div>
@@ -17,23 +21,15 @@
       </h2>
     </a>
   </div>
-  <svg xmlns="http://www.w3.org/2000/svg" id="menu-button" class="h-6 w-6 cursor-pointer lg:hidden block text-white" fill="none"
+  <%# <svg xmlns="http://www.w3.org/2000/svg" id="menu-button" class="h-6 w-6 cursor-pointer lg:hidden block text-white" fill="none"
     viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
+  </svg> %>
   <div class="hidden w-full lg:flex lg:items-center md:items-center md:w-auto" id="menu">
     <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
-      <%# <li>
-        <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Customers</a>
-      </li>
-      <li>
-        <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Restaurants</a>
-      </li>
-      <li>  %>
-      <%# logout %>
       <%if user_signed_in? %>
       <li>
-        <a class="md:p-4 py-2 block hover:text-purple-400 hover:bg-transparent text-white text-sm">Order History</a>
+        <%= button_to "Order History",order_history_path	,class:"md:p-4 py-2 block bg-transparent hover:text-purple-400 text-white text-sm", method: :get%>
       </li>
       <%= button_to "Logout", destroy_user_session_path,class:"md:p-4 py-2 block bg-transparent hover:text-purple-400 text-white text-sm",  method: :delete  %>
       <%else%>
@@ -43,3 +39,31 @@
     </ul>
   </div>
 </nav>
+<div class="overlay " id="overlay">
+  <nav class="flex flex-col justify-center  mt-10">
+    <ul class="mt-30 h-full">
+      <li id="nav-1" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-blue-300 ">
+        <a href="#home" class="text-sky-50 text-white">Foodie</a></li>
+      <li id="nav-1" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center ">
+        <hr class="w-10/12 flex justify-center -mr-10 self-center">
+      </li>
+      <li id="nav-2" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-blue-300">
+        <%= button_to "ORDER ",order_history_path	,class:"md:p-4 py-2 block bg-transparent self-left text-white", method: :get%>
+      </li>
+      <%if user_signed_in? %>
+      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-blue-300">
+        <%= button_to "Logout", destroy_user_session_path,class:"md:p-4 py-2 block bg-transparent self-left text-white",  method: :delete  %>
+      </li>
+      <%else%>
+      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-blue-300">
+        <%= button_to "Log In", user_session_path,class:"md:p-4 py-2 block bg-transparent text-white" %>
+      </li>
+      <%end%>
+    </ul>
+  </nav>
+</div>
+<div class="menu-bars lg:hidden cursor-pointer text-white " id="menu-bars">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+</div>

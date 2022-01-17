@@ -10,6 +10,16 @@ class LineItemsController < ApplicationController
 
   # GET /line_items/1 or /line_items/1.json
   def show
+   
+
+  end
+
+  def history
+    @history = LineItem.where(user_id:current_user.id)
+   
+
+    render :history
+
   end
 
 
