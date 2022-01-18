@@ -140,10 +140,10 @@ border-color: none;
 
 .item button.delete {
   margin-left: 10px;
-  min-width: 32px;
-  height: 32px;
+  // min-width: 32px;
+  // height: 32px;
   color: #525252;
-  background: #f1f1f1;
+  // background: #f1f1f1;
   border: 0;
   font-size: 24px;
   border-radius: 4px;
@@ -151,6 +151,10 @@ border-color: none;
 }
 .item button.delete:hover {
   background: #e2e2e2;
+}
+
+.small-text{
+  font-size: x-small;
 }
 
 // .sub-title {
@@ -179,12 +183,9 @@ border-color: none;
 // //   color: #ff5722;
 // // }
 
-// .arrival {
-//   margin-top: 8px;
-//   font-size: 12px;
-//   font-weight: 600;
-//   color: #555555;
-// }
+.arrival {
+  font-size: 8px;
+}
 
 .checkout {
   border-top: 1px solid #eaeaea;

@@ -1,14 +1,45 @@
      <div
          class="lg:w-7/12 sm:12/12 sm:m-10 lg:-ml-2 bg-white text-white lg:p-2 sm:p-7 sm:pr-6 lg:fixed  sm:relative  bg-indigo-100 shadow-lg shadow-blue-500/50 rounded-sm">
          <div class="disappear  lg:w-7/12 sm:w-12/12 sm:p-6 lg:p-10 h-full text-black sm:ml-5 ">
-             <div class="cart-title w-12/12 ">
+
+             <%if !@line_items.blank?%>
+             <%= button_to  order_history_path,class:"bg-purple-100 text-indigo-600 hover:bg-purple-200 hover:text-indigo-800 flex flex-justify w-12/12 cart-title rounded-lg", method: :get do%>
+
+             <div class="m-2">
+                 <img src="<%=@line_items.orders.first.food.image_url%>" class="w-10 h-10  rounded-full">
+             </div>
+
+
+             <div class=" w-12/12 flex flex-justify p-3">
+                 <div class="flex flex-col">
+                     <p class="sub-title text-md"><%=@line_items.orders.first.food.name%>...</p>
+                     <span class="text-pink-400 text-xsm small-text"><%=@line_items.status%></span>
+                 </div>
+                 <div class="pl-2 flex flex-col">
+                     <span class=""> Total :&nbsp;RM <%=@line_items.total_price%></span>
+                     <span class="text-pink-400 text-xsm small-text"><%=relative_time(@line_items.created_at)%></span>
+
+                 </div>
+
+                 <div class="pl-2 flex flex-col">
+                     <span class=""> View All </span>
+
+                 </div>
+
+             </div>
+             <%end%>
+             <%end%>
+
+
+
+             <div class="cart-title w-12/12 text-1xl ">
                  <div>
-                     <h2 class="text-2xl text-red-600">Shopping Cart</h2>
-                     <p class="sub-title">Please review the items in your cart (<span class="cart-count"></span>)</p>
+                     <h2 class="text-xl text-pink-600">Shopping Cart</h2>
+                     <p class="text-xsm">Please review the items in your cart (<span class="cart-count"></span>)</p>
                  </div>
                  <div class="total">
                      <span class="total-txt">Total Amount</span>
-                     <span class="total-amount">Total : &nbsp;<span></span></span>
+                     <span class="total-amount text-pink-600">Total : &nbsp;<span></span></span>
                  </div>
              </div>
              <ul clas="w-12 flex flex-col"></ul>

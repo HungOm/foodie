@@ -6,12 +6,11 @@ class FoodsController < ApplicationController
 
         if !current_user.nil?
           @foods = Food.where(id:search_params[:id])
-          @line_items= User.find(current_user.id).line_items.first(5)
+          @line_items = LineItem.order("created_at").last
       
         else 
           @foods = Food.where(id:search_params[:id])
 
-          @line_items = LineItem.limit(5).order('id desc')
 
         end
 

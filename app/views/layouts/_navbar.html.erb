@@ -42,20 +42,20 @@
 <div class="overlay " id="overlay">
   <nav class="flex flex-col justify-center  mt-10">
     <ul class="mt-30 h-full">
-      <li id="nav-1" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-blue-300 ">
+      <li id="nav-1" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-gray-300 ">
         <a href="#home" class="text-sky-50 text-white">Foodie</a></li>
       <li id="nav-1" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center ">
         <hr class="w-10/12 flex justify-center -mr-10 self-center">
       </li>
-      <li id="nav-2" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-blue-300">
+      <li id="nav-2" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-gray-300">
         <%= button_to "ORDER ",order_history_path	,class:"md:p-4 py-2 block bg-transparent self-left text-white", method: :get%>
       </li>
       <%if user_signed_in? %>
-      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-blue-300">
+      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex  justify-center hover:bg-gray-300">
         <%= button_to "Logout", destroy_user_session_path,class:"md:p-4 py-2 block bg-transparent self-left text-white",  method: :delete  %>
       </li>
       <%else%>
-      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-blue-300">
+      <li id="nav-3" class="nav-element w-12/12 text-2xl p-10 self-center pt-12 flex justify-center hover:bg-gray-300">
         <%= button_to "Log In", user_session_path,class:"md:p-4 py-2 block bg-transparent text-white" %>
       </li>
       <%end%>

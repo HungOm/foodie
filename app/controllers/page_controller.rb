@@ -7,14 +7,12 @@ class PageController < ApplicationController
     end
 
   if !current_user.nil?
-    @foods = Food.limit(5).order('created_at desc')
+    @foods = Food.limit(12).order('created_at desc')
     # @line_items= User.find(current_user.id).line_items.first(5)
-    @line_items = LineItem.order("created_at").last(5)
-
+    @line_items = LineItem.where(user_id:current_user.id).order('created_at').last
 
   else 
-    @foods = Food.limit(5).order('created_at desc')
-    @line_items = LineItem.order("created_at").last(5)
+    @foods = Food.limit(12).order('created_at desc')
   end
 
 
