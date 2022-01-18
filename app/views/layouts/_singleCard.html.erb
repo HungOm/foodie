@@ -1,27 +1,27 @@
 <div class="flex justify-center rounded-xl  w-full">
     <%if food.published?%>
     <div class="m-10 mr-12" id="<%=food.id%>">
-        <div class="flex flex-row drop-shadow-lg w-100 bg-white rounded-xl drop-shadow-2xl shadow-lg shadow-indigo-500/40">
-            <div class="lg:w-5/12 sm:w-4/12 ">
+        <div class="flex flex-row drop-shadow-lg w-100 bg-white md:h-40 sm:h-35 rounded-xl drop-shadow-2xl shadow-lg shadow-indigo-500/40">
+            <div class="lg:w-5/12 sm:w-4/12 order-first">
                 <%= image_tag food.image_url,class:"w-11/12 h-full ",alt:food.image_url.split('/')[-1].split('.')[0]%>
             </div>
             <%= link_to food_path(:id=>food.id) do%>
-            <div id="card" class="center p-2 w-7/12  justify-content-center ">
+            <div id="card" class="center p-2 w-12/12  lg:w-12/12 lg:h-35 justify-content-center order-last">
                 <div class="dish ">
                     <h1 id="food-name-<%=food.id%>" class="text-pink-500 text-xl "><%=food.name%> </h1>
                 </div>
-                <div class="description p-2 lg:h-36 sm:h-25 ">
-                    <p class="text-2xsm">
-                        <%=food.description.split(" ").first(10).join(" ")%>...
+                <div class="description  lg:h-30 sm:h-25 ">
+                    <p class="text-2sm">
+                        <%=food.description%>
                     </p>
                 </div>
                 <div
-                    class="footer flex  space-x-30 xlg:space-x-20 lg:space-x-5 md:space-x-40 sm:space-x-100 xsm:space-x-60 pl-10 pr-10">
+                    class="footer flex   space-x-30 xlg:space-x-20 lg:space-x-30 md:space-x-40 sm:space-x-100 xsm:space-x-60 ">
                     <div class="amount justify-content-start text-green-400">
                         <h3 class="text-xl">$<span id="food-price-<%=food.id%>"><%=food.price%></span></h3>
                     </div>
                     <div id="cart-button-<%=food.id%>"
-                        class="p-2 -pb-2 cart-button text-white cursor-pointer text-xl  w-50 add_cart bg-pink-500 drop-shadow-2xl  rounded-sm">
+                        class="p-2 -mb-2 cart-button text-white cursor-pointer text-xl  w-50 add_cart bg-pink-500 drop-shadow-2xl  rounded-sm">
                         <div id="add-button-<%=food.id%>" class="add btn-1 flex flex-row text-sm ">
                             <input type="checkbox" data-remote="false" data-url="/test"
                                 data-params="food_id=<%=food.id%>" class="pl-2  text-xs" data-method="post"

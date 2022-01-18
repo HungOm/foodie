@@ -30,8 +30,6 @@ class OrdersController < ApplicationController
 
 
   def test
-    byebug
-
     params
       # lineItem = LineItem.new(user_id:current_user.id,)
     if !session[:current_delivery_id].blank?

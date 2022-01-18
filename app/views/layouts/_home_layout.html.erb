@@ -1,7 +1,7 @@
 <%= javascript_pack_tag 'pages/home', 'data-turbolinks-track': 'reload' %>
 <%= javascript_pack_tag 'pages/createCart', 'data-turbolinks-track': 'reload' %>
 
-<div class="p-2 w-full justify-items-center bg-gray-100 ">
+<div class="p-2 w-full min-h-screen justify-items-center bg-gray-100 ">
   <div class="w-100 lg:w-8/12 md:w-12/12 mt-4">
     <%=render 'layouts/search'%>
     <div id="result-wrapper" class="ml-10 relative mr-3 mt-1 ml-4">
@@ -25,12 +25,12 @@
       <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-0">
 
         <% for food in foods %>
-        <%=render '/layouts/card',food:food%>
+        <%=render '/layouts/cards',food:food%>
         <% end %>
       </div>
 
       <%else%>
-      <%=render '/layouts/card',food:foods.first %>
+      <%=render '/layouts/singleCard',food:foods.first %>
       <%end%>
       <% else %>
       <p>No food available</p>

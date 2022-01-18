@@ -15,11 +15,8 @@ class LineItemsController < ApplicationController
   end
 
   def history
-    @history = LineItem.where(user_id:current_user.id)
+    @history = LineItem.where(user_id:current_user.id).order('created_at desc')
    
-
-    render :history
-
   end
 
 

@@ -33,7 +33,7 @@ function updateValue(word) {
 // search function 
 async function search(url) {
     DomCleanUp();
-    await delay(500);
+    await delay(300);
     try {
         const raw_response = await fetch(url);
         if (!raw_response.ok) { // check for the 404 errors
@@ -145,6 +145,7 @@ onReady(function () {
         addToCart(checkbtn)
 
     // =======================
+    
 
 
 

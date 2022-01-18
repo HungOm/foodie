@@ -1,6 +1,6 @@
-<div class="flex justify-center content-center h-screen bg-blue-300 ">
+<div class="flex justify-center content-center h-screen bg-gray-100 ">
   <div class="w-2/6 drop-shadow-xl h-100 m-17 mb-22 text-center bg-white place-self-center">
-    <h2 class="text-3xl text-white">Log In</h2>
+    <h2 class="text-xl text-indigo-600">LOG IN</h2>
     <div class="text-left p-8">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
@@ -18,7 +18,7 @@
       </div>
       <% end %>
       <div class="actions">
-        <%= f.submit "Log in",class:"px-3 py-2 text-white bg-blue-600 hover:bg-blue-700 block w-full rounded-md sm:text-sm " %>
+        <%= f.submit "Log in",class:"px-3 py-2 text-white bg-indigo-500 hover:bg-indigo-700 block w-full rounded-md sm:text-sm " %>
       </div>
       <% end %>
       <div class="justify-center">
